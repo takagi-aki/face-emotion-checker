@@ -2,8 +2,16 @@
 
 ## 利用モデル
 
+必要に応じて手動でダウンロードしてください
+
 ### FaceNet
 
 [GitHub](https://github.com/davidsandberg/facenet)
-module/FaceNetフォルダ内に別途FaceNetモデル(hogehoge.pb)をインストールする
-GitHubからオリジナルのものをインストールできる
+GitHubからオリジナルのものをダウンロードできる
+model/FaceNetフォルダ内に別途FaceNetモデル(hogehoge.pb)をインストールする
+
+### Multi-task EfficientNet-B2
+
+[GitHub](https://github.com/HSE-asavchenko/face-emotion-recognition)
+GitHubからダウンロードできる
+model/HSE-asavchenko.face-emotion-recognitionフォルダ内に別途モデル(mobilenet_7.h5)をインストールする
