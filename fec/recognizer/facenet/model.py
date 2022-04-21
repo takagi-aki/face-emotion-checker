@@ -38,12 +38,12 @@ class RecognizerFaceNet(IRecognizer):
 
     def embedding(self, img):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        resized_img = cv2.resize(img, (160, 160))
-        input_img = (resized_img.reshape(
-            (1, 160, 160, 3)).astype(np.float32) / 255)
+        img = cv2.resize(img, (160, 160)).astype(np.float32)
+        img = self._prewhiten(img)
+        img = img.reshape((1,160,160,3))
 
         emb = self.frozen_func(
-            input=tf.constant(self._prewhiten(input_img), tf.float32),
+            input=tf.constant(img, tf.float32),
             phase_train=tf.constant(False, tf.bool))
         return emb
 
