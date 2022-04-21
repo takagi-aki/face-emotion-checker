@@ -2,8 +2,5 @@
 
 class IEmotionClassifier:
 
-    def classify(self):
-        #
-        # 顔を検出する処理
-        #
+    def classify(self, img):
         pass
