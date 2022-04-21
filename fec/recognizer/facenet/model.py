@@ -1,36 +1,23 @@
-import glob
-import os
-
-
+import imp
 import tensorflow as tf
 import cv2
 import numpy as np
 
 
 from ..core import IRecognizer
-
+from ...util.tf2 import load_frozen_graph
 
 class RecognizerFaceNet(IRecognizer):
 
     def __init__(self):
-        filename = './model/FaceNet/20180402-114759.pb'
+        file_path = './model/FaceNet/20180402-114759.pb'
+        input_layer_names = ['input:0', 'phase_train:0']
+        output_layer_names = 'embeddings:0'
 
-        with tf.io.gfile.GFile(filename, "rb") as f:
-            graph_def = tf.compat.v1.GraphDef()
-            loaded = graph_def.ParseFromString(f.read())
-
-        def _imports_graph_def():
-            tf.compat.v1.import_graph_def(graph_def, name="")
-
-        func_imported = tf.compat.v1.wrap_function(_imports_graph_def, [])
-        graph_imported = func_imported.graph
-
-        self.frozen_func = func_imported.prune(
-            tf.nest.map_structure(
-                graph_imported.as_graph_element,
-                ['input:0', 'phase_train:0']),
-            tf.nest.map_structure(
-                graph_imported.as_graph_element, 'embeddings:0')
+        self.frozen_func = load_frozen_graph(
+            file_path,
+            input_layer_names,
+            output_layer_names
         )
 
         self.saved_face_vec = dict()
