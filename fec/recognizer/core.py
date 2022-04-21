@@ -12,9 +12,6 @@ import cv2
 
 class IRecognizer:
 
-    def register(self, name, img):
-        pass
-
     def recognize(self, img: cv2.Mat):
         pass
 
