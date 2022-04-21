@@ -5,9 +5,9 @@ import os
 import cv2
 
 
-from screen import Screen
-from camera import Camera
-from detector import DetectorOpenCV
+from fec.screen import Screen
+from fec.camera import Camera
+from fec.detector import DetectorOpenCV
 
 face_dir = './image/face'
 

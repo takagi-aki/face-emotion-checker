@@ -5,11 +5,11 @@ import os
 import cv2
 
 
-from screen import Screen
-from camera import Camera
-from detector import DetectorOpenCV
-from recognizer.facenet import RecognizerFaceNet
-from emotionclassifier import IEmotionClassifier
+from fec.screen import Screen
+from fec.camera import Camera
+from fec.detector import DetectorOpenCV
+from fec.recognizer.facenet import RecognizerFaceNet
+from fec.emotionclassifier import IEmotionClassifier
 
 
 face_dir = './image/face'
