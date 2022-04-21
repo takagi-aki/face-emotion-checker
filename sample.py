@@ -1,19 +1,59 @@
+import time
+import glob
+import os
+
+import cv2
+
+
+from screen import Screen
 from camera import Camera
-from detector import get_detector
-from recognizer import get_recognizer
-from emotionclassifier import get_classifier
+from detector import DetectorOpenCV
+from recognizer.facenet import RecognizerFaceNet
+from emotionclassifier import IEmotionClassifier
 
+
+face_dir = './image/face'
+
+print('初期化中...')
+
+sc = Screen()
 camera = Camera()
-face_detector = get_detector('backend_name')
-face_recognizer = get_recognizer('backend_name')
-face_classifier = get_classifier('backend_name')
+ret, input_image = camera.frame()
+face_detector = DetectorOpenCV()
+face_recognizer = RecognizerFaceNet()
+#face_classifier = IEmotionClassifier()
+
+print('顔登録中...')
+files = glob.glob(os.path.join(face_dir, '*.*'))
+print(files)
+for file in files:
+    name = os.path.splitext(os.path.basename(file))[0]
+
+    img = cv2.imread(file)
+    face_positions = face_detector.detect(input_image)
+    for (x, y, w, h) in face_positions:
+        print(name)
+        face_recognizer.register(name, input_image[y:y+h, x:x+w])
+
+print('撮影開始')
+ret, input_image = camera.frame()
+
+while ret is True:
+    face_positions = face_detector.detect(input_image)
+    sc_img = input_image.copy()
+    # clipping
+    for (x, y, w, h) in face_positions:
+        who, distance = face_recognizer.recognize(input_image[y:y+h,x:x+w])
+        cv2.rectangle(sc_img, (x,y),(x+w,y+h), (0,0,255), 1)
+        cv2.putText(sc_img, f'{who}={distance:.2f}', (x,y), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 1)
+        print(who, distance)
+
+    sc.show(sc_img)
 
 
-input_image = camera.frame()
+    time.sleep(0.1)
+    k = cv2.waitKey(60) & 0xff
+    if k == 27:
+        break
 
-faces_images = face_detector.detect(input_image)
-for face_img in faces_images:
-    who = face_recognizer.recognize(face_img)
-    emo = face_classifier.classify(face_img)
-
-    print(who, emo)
+    ret, input_image = camera.frame()
