@@ -5,7 +5,8 @@ import numpy as np
 
 
 from ..core import IRecognizer
-from ...util.tf2 import load_frozen_graph
+from ...util.tf2 import load_graph_def
+
 
 class RecognizerFaceNet(IRecognizer):
 
@@ -14,7 +15,7 @@ class RecognizerFaceNet(IRecognizer):
         input_layer_names = ['input:0', 'phase_train:0']
         output_layer_names = 'embeddings:0'
 
-        self.frozen_func = load_frozen_graph(
+        self.frozen_func = load_graph_def(
             file_path,
             input_layer_names,
             output_layer_names
