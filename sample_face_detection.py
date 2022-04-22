@@ -6,7 +6,6 @@ import cv2
 
 
 from fec.screen import Screen
-from fec.camera import Camera
 from fec.detector import DetectorOpenCV
 
 face_dir = './image/face'
@@ -22,24 +21,14 @@ for file in files:
     name = os.path.splitext(os.path.basename(file))
 
     img = cv2.imread(file)
-    sc.show(img)
-    while True:
-        time.sleep(0.1)
-        k = cv2.waitKey(60) & 0xff
-        if k == 27:
-            break
 
     face_positions = face_detector.detect(img)
     for (x, y, w, h) in face_positions:
         cv2.rectangle(img, (x,y),(x+w,y+h), (255,0,0), 3)
     
     sc.show(img)
-
-while True:
-    time.sleep(0.1)
-    k = cv2.waitKey(60) & 0xff
-    if k == 27:
-        break
-
-
-
+    while True:
+        time.sleep(0.1)
+        k = cv2.waitKey(60) & 0xff
+        if k == 27:
+            break
