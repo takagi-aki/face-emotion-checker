@@ -5,13 +5,12 @@ import numpy as np
 
 
 from ..core import IEmotionClassifier
-from ...util.tf2 import load_frozen_graph
 
 emo_list = ['Anger', 'Disgust', 'Fear',
             'Happiness',  'Neutral', 'Sadness', 'Surprise']
 
 
-class EmotionClassifierMultitaskEfficientNetB2(IEmotionClassifier):
+class EmotionClassifierHSEasavchenkoMobileNetv1(IEmotionClassifier):
 
     def __init__(self):
         file_path = './model/HSE-asavchenko.face-emotion-recognition/mobilenet_7.h5'
