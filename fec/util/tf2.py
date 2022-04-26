@@ -23,7 +23,7 @@ def load_graph_def(file_path, input_layer_names, output_layer_names):
         )
     )
 
-def load_meta_graph_def(file_path, meta_path, ckpt_path, input_layer_names, output_layer_names):
+def load_meta_graph_def(meta_path, ckpt_path, input_layer_names, output_layer_names):
 
     def import_multiply():
         tf.compat.v1.train.import_meta_graph(meta_path)
