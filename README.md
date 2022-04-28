@@ -3,6 +3,12 @@
 顔認証や表情認証等の機能をまとめたラッパーです。
 モデルデータは付属してません(別途DL)。
 
+## インストール
+
+```
+git clone https://github.com/takagi-aki/face-emotion-checker.git fec
+```
+
 ## 利用モデル
 
 必要に応じて手動でダウンロードしてください
