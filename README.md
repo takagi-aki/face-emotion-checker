@@ -13,7 +13,7 @@
 GitHubからオリジナルのものをダウンロードできる
 model/FaceNetフォルダ内に別途FaceNetモデル(hogehoge.pb)をインストールする
 
-### Multi-task EfficientNet-B2
+### Andrey Savchenko's Multi-task MobileNet-v1
 
 [GitHub](https://github.com/HSE-asavchenko/face-emotion-recognition)
 GitHubからダウンロードできる
