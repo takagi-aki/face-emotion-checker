@@ -8,14 +8,15 @@ import cv2
 from fec.screen import Screen
 from fec.detector import DetectorOpenCV
 
-face_dir = './image/face'
 
 print('初期化中...')
 
+face_dir = './image/face'
 sc = Screen()
 face_detector = DetectorOpenCV()
 
-print('顔認識開始...')
+print('顔検出開始...')
+
 files = glob.glob(os.path.join(face_dir, '*.*'))
 for file in files:
     name = os.path.splitext(os.path.basename(file))
@@ -27,8 +28,9 @@ for file in files:
         cv2.rectangle(img, (x,y),(x+w,y+h), (255,0,0), 3)
     
     sc.show(img)
-    while True:
-        time.sleep(0.1)
-        k = cv2.waitKey(60) & 0xff
-        if k == 27:
-            break
+
+while True:
+    time.sleep(0.1)
+    k = cv2.waitKey(60) & 0xff
+    if k == 27:
+        break

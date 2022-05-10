@@ -1,6 +1,6 @@
-import time
 import glob
 import os
+
 
 import cv2
 
@@ -9,7 +9,6 @@ from fec.screen import Screen
 from fec.camera import Camera
 from fec.detector import DetectorOpenCV
 from fec.recognizer.facenet import RecognizerFaceNet
-from fec.emotionclassifier.hseasavchenkomobilenetv1 import EmotionClassifierHSEasavchenkoMobileNetv1
 
 
 face_dir = './image/face'

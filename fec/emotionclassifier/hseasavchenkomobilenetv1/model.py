@@ -1,4 +1,3 @@
-import imp
 import tensorflow as tf
 import cv2
 import numpy as np
@@ -21,4 +20,4 @@ class EmotionClassifierHSEasavchenkoMobileNetv1(IEmotionClassifier):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = cv2.resize(img, (224, 224)).astype(dtype=np.float32)
         img = img.reshape((1, 224, 224, 3))
-        return [*zip(emo_list, self.model.predict(img)[0])]
+        return dict(*zip(emo_list, self.model.predict(img)[0]))

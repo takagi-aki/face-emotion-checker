@@ -1,5 +1,4 @@
-import os
-from typing import Callable, List, Tuple
+from typing import Tuple
 
 
 import cv2
@@ -12,7 +11,15 @@ import cv2
 
 class IRecognizer:
 
-    def recognize(self, img: cv2.Mat):
+    def recognize(self, img: cv2.Mat) -> Tuple[str, float]:
+        """Gain name and distance bitween registered before from face image.
+
+        Args:
+            img: CV2 BGR color image.
+        
+        Returns:
+            Return Tuple. First is name of face, Second is distance.
+        """
         pass
 
 

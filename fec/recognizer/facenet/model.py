@@ -1,4 +1,6 @@
-import imp
+from typing import Tuple
+
+
 import tensorflow as tf
 import cv2
 import numpy as np
@@ -48,7 +50,7 @@ class RecognizerFaceNet(IRecognizer):
             phase_train=tf.constant(False, tf.bool))
         return emb
 
-    def recognize(self, img):
+    def recognize(self, img: cv2.Mat) -> Tuple[str, float]:
         emb = self.embedding(img)
 
         most_similar = '?'
