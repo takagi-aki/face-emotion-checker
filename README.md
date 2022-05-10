@@ -13,14 +13,17 @@ git clone https://github.com/takagi-aki/face-emotion-checker.git fec
 
 必要に応じて手動でダウンロードしてください  
 
-### FaceNet
+### Dlib 特徴点検出
 
-[GitHub](https://github.com/davidsandberg/facenet)  
-GitHubからオリジナルのものをダウンロードできる  
+"http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2"からダウンロードして解凍  
+model/dlibフォルダ内に(shape_predictor_68_face_landmarks.dat)をインストールする  
+
+### FaceNet 顔認証
+
+[GitHub](https://github.com/davidsandberg/facenet)からオリジナルのものをダウンロードできる  
 model/FaceNetフォルダ内に別途FaceNetモデル(20180402-114759.pb)をインストールする  
 
-### Andrey Savchenko's Multi-task MobileNet-v1
+### Andrey Savchenko's Multi-task MobileNet-v1 表情認識
 
-[GitHub](https://github.com/HSE-asavchenko/face-emotion-recognition)  
-GitHubからダウンロードできる  
+[GitHub](https://github.com/HSE-asavchenko/face-emotion-recognition)からダウンロードできる  
 model/HSE-asavchenko.face-emotion-recognitionフォルダ内に別途モデル(mobilenet_7.h5)をインストールする  
