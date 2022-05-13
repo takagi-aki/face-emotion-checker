@@ -8,7 +8,7 @@ import cv2
 from fec.screen import Screen
 from fec.camera import Camera
 from fec.detector import DetectorOpenCV
-from fec.landmarkdetector import LandmarkDetectorOpenCV
+from fec.landmarkdetector import LandmarkDetectorDlib
 
 
 face_dir = './image/face'
@@ -19,7 +19,7 @@ sc = Screen()
 camera = Camera()
 ret, input_image = camera.frame()
 face_detector = DetectorOpenCV()
-face_landmarkd = LandmarkDetectorOpenCV()
+face_landmarkd = LandmarkDetectorDlib()
 
 
 print('撮影開始')

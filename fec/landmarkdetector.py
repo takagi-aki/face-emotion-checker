@@ -30,7 +30,7 @@ class ILandmarkDetector:
 # インスタンス定義
 #
 
-class LandmarkDetectorOpenCV(ILandmarkDetector):
+class LandmarkDetectorDlib(ILandmarkDetector):
     def __init__(
         self,
         **args
