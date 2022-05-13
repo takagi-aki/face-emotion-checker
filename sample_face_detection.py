@@ -7,7 +7,7 @@ import cv2
 
 from fec.screen import Screen
 from fec.camera import Camera
-from fec.detector.dlib import DetectorDib as Ditector
+from fec.detector import DetectorOpenCV as Detector
 
 
 print('初期化中...')
@@ -15,7 +15,7 @@ print('初期化中...')
 sc = Screen()
 camera = Camera()
 ret, input_image = camera.frame()
-face_detector = Ditector()
+face_detector = Detector()
 
 
 print('撮影開始')
