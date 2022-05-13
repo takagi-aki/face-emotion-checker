@@ -6,31 +6,31 @@ import cv2
 
 
 from fec.screen import Screen
-from fec.detector import DetectorOpenCV
+from fec.camera import Camera
+from fec.detector import DetectorDibCNN as Ditector
 
 
 print('初期化中...')
 
-face_dir = './image/face'
 sc = Screen()
-face_detector = DetectorOpenCV()
+camera = Camera()
+ret, input_image = camera.frame()
+face_detector = Ditector()
 
-print('顔検出開始...')
 
-files = glob.glob(os.path.join(face_dir, '*.*'))
-for file in files:
-    name = os.path.splitext(os.path.basename(file))
+print('撮影開始')
+ret, input_image = camera.frame()
 
-    img = cv2.imread(file)
-
-    face_positions = face_detector.detect(img)
+while ret is True:
+    face_positions = face_detector.detect(input_image)
+    sc_img = input_image.copy()
     for (x, y, w, h) in face_positions:
-        cv2.rectangle(img, (x,y),(x+w,y+h), (255,0,0), 3)
-    
-    sc.show(img)
+        cv2.rectangle(sc_img, (x,y),(x+w,y+h), (0,0,255), 1)
 
-while True:
-    time.sleep(0.1)
+    sc.show(sc_img)
+
     k = cv2.waitKey(60) & 0xff
     if k == 27:
         break
+
+    ret, input_image = camera.frame()

@@ -43,7 +43,7 @@ class LandmarkDetectorOpenCV(ILandmarkDetector):
         img: cv2.Mat,
         faces
     ):
-        #img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         x,y,w,h = faces
         rect = dlib.rectangle(x,y,x+w,y+h)
         detection = self.predictor(img, rect)
