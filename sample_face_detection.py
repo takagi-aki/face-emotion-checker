@@ -7,7 +7,7 @@ import cv2
 
 from fec.screen import Screen
 from fec.camera import Camera
-from fec.detector import DetectorDibCNN as Ditector
+from fec.detector.dlib import DetectorDib as Ditector
 
 
 print('初期化中...')
