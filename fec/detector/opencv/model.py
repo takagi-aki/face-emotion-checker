@@ -11,6 +11,7 @@ class DetectorOpenCVYN(IDetector):
     """CV2とYuNetで顔検出.
 
     CV2標準のhaarcascade判別機と変わらず高速で、さらにそれより精度が高い.
+    対象の画素数が大きすぎると判定できないことがある.
 
     モデルを以下のリンクからダウンロードする必要あり.
     https://github.com/ShiqiYu/libfacedetection.train/tree/master/tasks/task1/onnx
