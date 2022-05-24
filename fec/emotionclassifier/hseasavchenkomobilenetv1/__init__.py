@@ -1,1 +1,1 @@
-from .model import EmotionClassifierHSEasavchenkoMobileNetv1
+from .model import EmotionClassifierHSEasavchenkoMobileNetv1, EmotionClassifierHSEasavchenkoMobileNetv1ONNX
