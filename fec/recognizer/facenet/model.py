@@ -5,14 +5,15 @@ import tensorflow as tf
 import cv2
 import numpy as np
 
-
+from ...util import cv2util as cv2u
 from ..core import IRecognizer
 from ...util.tf2 import load_graph_def
 
 
 class RecognizerFaceNet(IRecognizer):
 
-    def __init__(self):
+    def __init__(self,
+                 threshold=0.90, **args):
         file_path = './model/FaceNet/20180402-114759.pb'
         input_layer_names = ['input:0', 'phase_train:0']
         output_layer_names = 'embeddings:0'
@@ -24,9 +25,10 @@ class RecognizerFaceNet(IRecognizer):
         )
 
         self.saved_face_vec = dict()
+        self.threshold = threshold
 
-    def register(self, name, img):
-        emb = self.embedding(img)
+    def register(self, name, img, face):
+        emb = self.embedding(img, face)
         self.saved_face_vec[name] = emb
 
     def _calc_euclid_distance(self, a, b):
@@ -39,22 +41,27 @@ class RecognizerFaceNet(IRecognizer):
         y = np.multiply(np.subtract(x, mean), 1/std_adj)
         return y
 
-    def embedding(self, img):
+    def embedding(self, img, face):
+        x, y, w, h = map(int, face[0:4])
+        rect_size = max(w, h)
+        img = cv2u.clip(img, *cv2u.rect_from_center(x + w //
+                        2, y + h//2, rect_size, rect_size))
+
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = cv2.resize(img, (160, 160)).astype(np.float32)
         img = self._prewhiten(img)
-        img = img.reshape((1,160,160,3))
+        img = img.reshape((1, 160, 160, 3))
 
         emb = self.frozen_func(
             input=tf.constant(img, tf.float32),
             phase_train=tf.constant(False, tf.bool))
         return emb
 
-    def recognize(self, img: cv2.Mat) -> Tuple[str, float]:
-        emb = self.embedding(img)
+    def recognize(self, img: cv2.Mat, face) -> Tuple[str, float]:
+        emb = self.embedding(img, face)
 
-        most_similar = '?'
-        distance_similar = 1000
+        most_similar = 'unknown'
+        distance_similar = self.threshold
         for name, vec in self.saved_face_vec.items():
             distance = self._calc_euclid_distance(emb, vec)
             if distance_similar > distance:

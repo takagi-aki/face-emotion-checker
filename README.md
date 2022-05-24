@@ -15,18 +15,27 @@ git clone https://github.com/takagi-aki/face-emotion-checker.git fec
 
 ### OpenCV YuNet 顔検出
 
-"https://github.com/ShiqiYu/libfacedetection.train/tree/master/tasks/task1/onnx"からダウンロード
+"https://github.com/ShiqiYu/libfacedetection.train/tree/master/tasks/task1/onnx"
+からダウンロード
+model/opencvフォルダ内にインストールする  
+
+### OpenCV SFace 顔認証
+
+https://drive.google.com/file/d/1ClK9WiB492c5OZFKveF3XiHCejoOxINW/view  
+からダウンロード  
 model/opencvフォルダ内にインストールする  
 
 ### Dlib 顔検出
 
-"http://dlib.net/files/mmod_human_face_detector.dat.bz2"からダウンロードして解凍  
+"http://dlib.net/files/mmod_human_face_detector.dat.bz2"
+からダウンロードして解凍  
 model/dlibフォルダ内にインストールする  
 
 
 ### Dlib 特徴点検出
 
-"http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2"からダウンロードして解凍  
+"http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2"
+からダウンロードして解凍  
 model/dlibフォルダ内に(shape_predictor_68_face_landmarks.dat)をインストールする  
 
 

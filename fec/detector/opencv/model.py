@@ -34,8 +34,6 @@ class DetectorOpenCVYN(IDetector):
             faces = []
 
         faces_position = []
-        for face in faces:
-            faces_position.append(tuple(map(int, face[0:4])))
 
-        return faces_position
+        return faces
 

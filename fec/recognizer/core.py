@@ -11,7 +11,7 @@ import cv2
 
 class IRecognizer:
 
-    def recognize(self, img: cv2.Mat) -> Tuple[str, float]:
+    def recognize(self, img: cv2.Mat, face) -> Tuple[str, float]:
         """Gain name and distance bitween registered before from face image.
 
         Args:
